@@ -56,6 +56,6 @@ public class Category {
 	public static final Category VEGETABLES = new Category(2, "Vegetable", "Eg. cucumber, pepper, carrot");
 	public static final Category DAIRY = new Category(3, "Dairy", "Eg. milk, eggs, butter");
 	public static final Category SWEETS = new Category(4, "Sweet", "Eg. ice cream, cake, chocolate");
-	public static final Category COOKED = new Category(4, "Cooked food", "Eg. chicken, beans, pasta");
+	public static final Category COOKED = new Category(5, "Cooked food", "Eg. chicken, beans, pasta");
 
 }

@@ -28,4 +28,18 @@ public interface CategoryDao {
 	 */
 	Category get(int id);
 
+	/**
+	 * Update an existing category.
+	 * 
+	 * @param category the given category
+	 */
+	void update(Category category);
+
+	/**
+	 * Delete a category.
+	 * 
+	 * @param category the given category
+	 */
+	void delete(Category category);
+
 }
