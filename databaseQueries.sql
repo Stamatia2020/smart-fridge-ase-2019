@@ -17,7 +17,7 @@ CREATE TABLE food (
 	name VARCHAR(50),
 	quantity INT NOT NULL,
 	calories DOUBLE NOT NULL,
-	category_id INT,
+	category_id INT NOT NULL,
 	CONSTRAINT pk_food_id PRIMARY KEY (id),
 	CONSTRAINT fk_food_category_id FOREIGN KEY (category_id) REFERENCES category (id)
 );
