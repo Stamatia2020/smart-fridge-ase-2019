@@ -22,13 +22,13 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private Session currentSession = sessionFactory.getCurrentSession();
+	//private Session currentSession = sessionFactory.getCurrentSession();
 
 	@Override
 	public void add(Category category) {
 
 		try {
-			currentSession.persist(category);
+			sessionFactory.getCurrentSession().persist(category);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,12 +39,12 @@ public class CategoryDaoImpl implements CategoryDao {
 
 		List<Category> data = new ArrayList<>();
 		try {
-			CriteriaBuilder builder = currentSession.getCriteriaBuilder();
+			CriteriaBuilder builder = sessionFactory.getCurrentSession().getCriteriaBuilder();
 
 			CriteriaQuery<Category> criteriaQuery = builder.createQuery(Category.class);
 			criteriaQuery.from(Category.class);
 
-			data = currentSession.createQuery(criteriaQuery).getResultList();
+			data = sessionFactory.getCurrentSession().createQuery(criteriaQuery).getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,14 +54,14 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public Category get(int id) {
-		return currentSession.get(Category.class, Integer.valueOf(id));
+		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
 	}
 
 	@Override
 	public void update(Category category) {
 
 		try {
-			currentSession.update(category);
+			sessionFactory.getCurrentSession().update(category);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,7 +71,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public void delete(Category category) {
 
 		try {
-			currentSession.delete(category);
+			sessionFactory.getCurrentSession().delete(category);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
