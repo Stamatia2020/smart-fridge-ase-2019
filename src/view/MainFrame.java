@@ -52,12 +52,13 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(135, 206, 235));
 		contentPane.add(panel, BorderLayout.SOUTH);
 
 		profileButton = new JButton("My Profile");
@@ -81,6 +82,7 @@ public class MainFrame extends JFrame {
 		fridgeButton.setBackground(new Color(30, 144, 255));
 		
 		lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(new Color(255, 255, 255));
 		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/view/refrigerator.png")));
 
 		GroupLayout gl_panel = new GroupLayout(panel);

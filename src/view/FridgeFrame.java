@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dto.Category;
 import dto.Food;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -21,6 +23,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import java.sql.*;
 import java.awt.Toolkit;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import java.awt.SystemColor;
 
 public class FridgeFrame extends JFrame {
 
@@ -56,7 +61,7 @@ public class FridgeFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -71,7 +76,7 @@ public class FridgeFrame extends JFrame {
 		addButton.setBackground(new Color(30, 144, 255));
 		
 		JLabel lblFoodsList = new JLabel("Foods List");
-		lblFoodsList.setForeground(new Color(30, 144, 255));
+		lblFoodsList.setForeground(new Color(255, 255, 255));
 		lblFoodsList.setFont(new Font("Perpetua Titling MT", Font.BOLD, 31));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -80,18 +85,17 @@ public class FridgeFrame extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(458, Short.MAX_VALUE)
+					.addComponent(addButton)
+					.addGap(18)
+					.addComponent(backButton)
+					.addGap(84))
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(68)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblFoodsList)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(9)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(addButton)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(backButton))
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 541, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(94, Short.MAX_VALUE))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblFoodsList))
+					.addContainerGap(74, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -99,19 +103,63 @@ public class FridgeFrame extends JFrame {
 					.addGap(51)
 					.addComponent(lblFoodsList)
 					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
-					.addGap(27)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(addButton)
 						.addComponent(backButton))
-					.addContainerGap(92, Short.MAX_VALUE))
+					.addContainerGap(109, Short.MAX_VALUE))
 		);
 		
 		table = new JTable();
+		table.setBackground(SystemColor.inactiveCaptionBorder);
+		table.setForeground(SystemColor.textText);
+		table.setEnabled(false);
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Category", "Food", "Quantity", "Calories", "                "
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, Object.class, Integer.class, Integer.class, Object.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(36);
+		table.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table.getColumnModel().getColumn(3).setPreferredWidth(20);
+		table.getColumnModel().getColumn(4).setPreferredWidth(92);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 15));
+		table.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		table.setFont(new Font("Arial Narrow", Font.PLAIN, 16));
 		contentPane.setLayout(gl_contentPane);
 	}
 }
