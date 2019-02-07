@@ -14,16 +14,21 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import dto.Food;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
+import javax.swing.JScrollPane;
+import java.sql.*;
+import java.awt.Toolkit;
 
 public class FridgeFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private static ArrayList<Food> foods = new ArrayList<>();
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -36,7 +41,9 @@ public class FridgeFrame extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+				
+			}		
+			
 		});
 	}
 
@@ -44,6 +51,7 @@ public class FridgeFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public FridgeFrame() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FridgeFrame.class.getResource("/view/fridge.png")));
 		setTitle("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
@@ -66,26 +74,24 @@ public class FridgeFrame extends JFrame {
 		lblFoodsList.setForeground(new Color(30, 144, 255));
 		lblFoodsList.setFont(new Font("Perpetua Titling MT", Font.BOLD, 31));
 		
-		table = new JTable();
-		table.setFillsViewportHeight(true);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 15));
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportBorder(null);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(68)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblFoodsList)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(425)
-							.addComponent(addButton)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(backButton))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(68)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(table, GroupLayout.PREFERRED_SIZE, 542, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblFoodsList))))
-					.addContainerGap(102, Short.MAX_VALUE))
+							.addGap(9)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(addButton)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(backButton))
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 541, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(94, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -93,13 +99,19 @@ public class FridgeFrame extends JFrame {
 					.addGap(51)
 					.addComponent(lblFoodsList)
 					.addGap(18)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
-					.addGap(37)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(addButton)
 						.addComponent(backButton))
-					.addContainerGap(82, Short.MAX_VALUE))
+					.addContainerGap(92, Short.MAX_VALUE))
 		);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setFillsViewportHeight(true);
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 15));
 		contentPane.setLayout(gl_contentPane);
 	}
 }
