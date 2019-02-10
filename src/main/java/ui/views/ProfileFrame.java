@@ -152,6 +152,23 @@ public class ProfileFrame extends JFrame {
 		panel.setLayout(gl_panel);
 	}
 
+    public void infoBox(String infoMessage)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, "Profile saved", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public JTextField getAgeField() {
+        return ageField;
+    }
+
+    public JTextField getHeightField() {
+        return heightField;
+    }
+
+    public JTextField getWeightField() {
+        return weightField;
+    }
+
     public JButton getBtnDone() {
         return btnDone;
     }
