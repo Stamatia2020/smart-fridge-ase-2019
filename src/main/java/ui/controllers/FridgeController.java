@@ -33,6 +33,9 @@ public class FridgeController extends AbstractFrameController {
 
         // TODO: clear all text fields before revealing
 
+        // attach button listeners
+        registerAction(addFoodFrame.getBackButton(), (e -> returnToFridgeFrame()));
+
         addFoodFrame.setVisible(true);
         fridgeFrame.dispose();
     }
@@ -40,5 +43,10 @@ public class FridgeController extends AbstractFrameController {
     private void returnToMainFrame() {
         mainController.prepareAndShowFrame();
         fridgeFrame.dispose();
+    }
+
+    private void returnToFridgeFrame() {
+        fridgeFrame.setVisible(true);
+        addFoodFrame.dispose();
     }
 }

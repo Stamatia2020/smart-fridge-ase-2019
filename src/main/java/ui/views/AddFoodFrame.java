@@ -34,6 +34,7 @@ public class AddFoodFrame extends JFrame {
 	private JLabel lblQuantity;
 	private JLabel lblCalories;
 	private JLabel lblNewLabel;
+	private JButton backButton;
 
 	/**
 	 * Create the frame.
@@ -54,7 +55,7 @@ public class AddFoodFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton backButton = new JButton("Back");
+		backButton = new JButton("Back");
 		backButton.setForeground(new Color(255, 255, 255));
 		backButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		backButton.setBackground(new Color(30, 144, 255));
@@ -175,4 +176,8 @@ public class AddFoodFrame extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
+    public JButton getBackButton() {
+        return backButton;
+    }
 }
