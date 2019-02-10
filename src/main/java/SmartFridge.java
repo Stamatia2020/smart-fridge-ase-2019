@@ -7,6 +7,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.awt.*;
+
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
@@ -18,8 +20,10 @@ public class SmartFridge {
                 .web(false)
                 .run();
 
-        MainController mainController = ctx.getBean(MainController.class);
-        mainController.prepareAndShowFrame();
+        EventQueue.invokeLater(() -> {
+            MainController mainController = ctx.getBean(MainController.class);
+            mainController.prepareAndShowFrame();
+        });
     }
 
 }
