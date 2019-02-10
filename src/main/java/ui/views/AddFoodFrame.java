@@ -1,28 +1,22 @@
-package view;
+package main.java.ui.views;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.List;
-import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dto.Food;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.DefaultComboBoxModel;
-import java.util.Locale.Category;
 
 public class AddFoodFrame extends JFrame {
 
@@ -55,7 +49,7 @@ public class AddFoodFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public AddFoodFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(AddFoodFrame.class.getResource("/view/fridge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AddFoodFrame.class.getResource("/main/java/ui/view/fridge.png")));
 		setTitle("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
@@ -115,7 +109,7 @@ public class AddFoodFrame extends JFrame {
 		lblCalories.setFont(new Font("Perpetua Titling MT", Font.BOLD, 16));
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(AddFoodFrame.class.getResource("/view/foods.png")));
+		lblNewLabel.setIcon(new ImageIcon(AddFoodFrame.class.getResource("/main/java/ui/view/foods.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

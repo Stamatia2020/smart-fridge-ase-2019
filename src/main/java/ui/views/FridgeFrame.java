@@ -1,9 +1,8 @@
-package view;
+package main.java.ui.views;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.List;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -11,17 +10,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dto.Category;
-import dto.Food;
+import main.java.dto.Food;
 import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
-import java.sql.*;
 import java.awt.Toolkit;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +51,7 @@ public class FridgeFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public FridgeFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FridgeFrame.class.getResource("/view/fridge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FridgeFrame.class.getResource("/main/java/ui/view/fridge.png")));
 		setTitle("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);

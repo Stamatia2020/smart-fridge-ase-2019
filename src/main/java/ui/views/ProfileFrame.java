@@ -1,51 +1,36 @@
-package view;
+package main.java.ui.views;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
-import javax.swing.GroupLayout;
+import java.awt.*;
+import java.io.IOException;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.Toolkit;
 
+@Component
 public class ProfileFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField ageField;
 	private JTextField heightField;
 	private JTextField weightField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ProfileFrame frame = new ProfileFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton btnDone;
+	private JButton btnBack;
 
 	/**
 	 * Create the frame.
 	 */
 	public ProfileFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ProfileFrame.class.getResource("/view/fridge.png")));
+
+        try {
+            setIconImage(Toolkit.getDefaultToolkit().getImage(new ClassPathResource("/images/fridge.png").getURL()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
@@ -87,18 +72,25 @@ public class ProfileFrame extends JFrame {
 		lblWeight.setForeground(new Color(255, 255, 255));
 		lblWeight.setFont(new Font("Perpetua Titling MT", Font.BOLD, 19));
 
-		JButton btnDone = new JButton("DONE");
+		btnDone = new JButton("DONE");
 		btnDone.setBackground(new Color(30, 144, 255));
 		btnDone.setForeground(new Color(255, 255, 255));
 		btnDone.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 17));
 
-		JButton btnBack = new JButton("BACK");
+		btnBack = new JButton("BACK");
 		btnBack.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 17));
 		btnBack.setBackground(new Color(30, 144, 255));
 		btnBack.setForeground(Color.WHITE);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ProfileFrame.class.getResource("/view/iconprofile.png")));
+
+        JLabel lblNewLabel = new JLabel("");
+
+        try {
+            lblNewLabel.setIcon(new ImageIcon(new ClassPathResource("/images/iconprofile.png").getURL()));
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -159,4 +151,12 @@ public class ProfileFrame extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 	}
+
+    public JButton getBtnDone() {
+        return btnDone;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
 }

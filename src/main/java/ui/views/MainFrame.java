@@ -1,52 +1,35 @@
-package view;
+package main.java.ui.views;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
-import javax.swing.GroupLayout;
+import java.awt.*;
+import java.io.IOException;
+
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
+@Component
 public class MainFrame extends JFrame {
 
-	private JPanel contentPane;
+    private JPanel contentPane;
 	private JButton profileButton;
 	private JButton fridgeButton;
 	private JButton exitButton;
 	private JLabel lblNewLabel;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public MainFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/view/fridge.png")));
+
+        try {
+            setIconImage(Toolkit.getDefaultToolkit().getImage(new ClassPathResource("/images/fridge.png").getURL()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
 		this.setTitle("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,10 +46,6 @@ public class MainFrame extends JFrame {
 
 		profileButton = new JButton("My Profile");
 		profileButton.setForeground(Color.WHITE);
-		profileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		profileButton.setBackground(new Color(30, 144, 255));
 		profileButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 
@@ -80,10 +59,14 @@ public class MainFrame extends JFrame {
 		fridgeButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		fridgeButton.setForeground(new Color(255, 255, 255));
 		fridgeButton.setBackground(new Color(30, 144, 255));
-		
+
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(255, 255, 255));
-		lblNewLabel.setIcon(new ImageIcon(MainFrame.class.getResource("/view/refrigerator.png")));
+        try {
+            lblNewLabel.setIcon(new ImageIcon(new ClassPathResource("/images/refrigerator.png").getURL()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -117,12 +100,15 @@ public class MainFrame extends JFrame {
 		panel.setLayout(gl_panel);
 	}
 
-	private void createEvents() {
-		profileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+    public JButton getProfileButton() {
+        return profileButton;
+    }
 
-			}
-		});
+    public JButton getFridgeButton() {
+        return fridgeButton;
+    }
 
-	}
+    public JButton getExitButton() {
+        return exitButton;
+    }
 }
