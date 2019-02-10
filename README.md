@@ -1,4 +1,10 @@
-# smart-fridge-ase-2019
-A toy example JAVA application following the guidelines of the Advanced Software Technology course 2019.
+# Smart Fridge
+A simple Spring Boot Swing JAVA application following the guidelines of the Advanced Software Technology course 2019. Utilizes a file-embedded H2 database for persistence with JPA + Hibernate ORM.
 
-TODO: Add more info and setup instructions
+### Development Setup Instructions
+
+* Clone project
+* Import project into Eclipse or IntelliJ IDEA
+* Use Maven to download dependencies
+* Build
+* Run SmartFridge class to trigger Spring Boot launcher.
