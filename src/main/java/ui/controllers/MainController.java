@@ -28,12 +28,13 @@ public class MainController extends AbstractFrameController {
     }
 
     private void showProfileFrame() {
-        mainFrame.dispose();
         profileController.prepareAndShowFrame();
+        mainFrame.dispose();
     }
 
     private void showFoodsFrame() {
         fridgeController.prepareAndShowFrame();
+        mainFrame.dispose();
     }
 
     private void terminate() {

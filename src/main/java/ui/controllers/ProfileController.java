@@ -67,8 +67,8 @@ public class ProfileController extends AbstractFrameController {
     }
 
     private void returnToMainFrame() {
-        profileFrame.dispose();
         mainController.prepareAndShowFrame();
+        profileFrame.dispose();
     }
 
     private boolean userExists() {
