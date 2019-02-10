@@ -1,5 +1,8 @@
 package main.java.ui.views;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -16,8 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Toolkit;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
+@Component
 public class AddFoodFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -29,28 +34,19 @@ public class AddFoodFrame extends JFrame {
 	private JLabel lblQuantity;
 	private JLabel lblCalories;
 	private JLabel lblNewLabel;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddFoodFrame frame = new AddFoodFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public AddFoodFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(AddFoodFrame.class.getResource("/main/java/ui/view/fridge.png")));
-		setTitle("Smart Fridge");
+
+        try {
+            setIconImage(Toolkit.getDefaultToolkit().getImage(new ClassPathResource("/images/fridge.png").getURL()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        setTitle("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
 		contentPane = new JPanel();
@@ -109,7 +105,12 @@ public class AddFoodFrame extends JFrame {
 		lblCalories.setFont(new Font("Perpetua Titling MT", Font.BOLD, 16));
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(AddFoodFrame.class.getResource("/main/java/ui/view/foods.png")));
+        try {
+            lblNewLabel.setIcon(new ImageIcon(new ClassPathResource("/images/foods.png").getURL()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

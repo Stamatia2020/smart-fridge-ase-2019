@@ -32,6 +32,7 @@ public class FridgeFrame extends JFrame {
 	private JTable table;
 	private static ArrayList<Food> foods = new ArrayList<>();
 	private JButton backButton;
+	private JButton addButton;
 
 	/**
 	 * Create the frame.
@@ -57,7 +58,7 @@ public class FridgeFrame extends JFrame {
 		backButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		backButton.setBackground(new Color(30, 144, 255));
 		
-		JButton addButton = new JButton("Add");
+		addButton = new JButton("Add");
 		addButton.setForeground(new Color(255, 255, 255));
 		addButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		addButton.setBackground(new Color(30, 144, 255));
@@ -149,6 +150,10 @@ public class FridgeFrame extends JFrame {
 		table.setFont(new Font("Arial Narrow", Font.PLAIN, 16));
 		contentPane.setLayout(gl_contentPane);
 	}
+
+    public JButton getAddButton() {
+        return addButton;
+    }
 
     public JButton getBackButton() {
         return backButton;
