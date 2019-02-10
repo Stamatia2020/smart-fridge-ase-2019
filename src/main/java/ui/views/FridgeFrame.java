@@ -1,8 +1,8 @@
 package main.java.ui.views;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import main.java.dto.Food;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
+
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
@@ -22,37 +25,26 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
 
+@Component
 public class FridgeFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private static ArrayList<Food> foods = new ArrayList<>();
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FridgeFrame frame = new FridgeFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}		
-			
-		});
-	}
+	private JButton backButton;
 
 	/**
 	 * Create the frame.
 	 */
 	public FridgeFrame() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FridgeFrame.class.getResource("/main/java/ui/view/fridge.png")));
-		setTitle("Smart Fridge");
+
+        try {
+            setIconImage(Toolkit.getDefaultToolkit().getImage(new ClassPathResource("/images/fridge.png").getURL()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        setTitle("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 510);
 		contentPane = new JPanel();
@@ -60,7 +52,7 @@ public class FridgeFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton backButton = new JButton("Back");
+		backButton = new JButton("Back");
 		backButton.setForeground(new Color(255, 255, 255));
 		backButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		backButton.setBackground(new Color(30, 144, 255));
@@ -157,4 +149,8 @@ public class FridgeFrame extends JFrame {
 		table.setFont(new Font("Arial Narrow", Font.PLAIN, 16));
 		contentPane.setLayout(gl_contentPane);
 	}
+
+    public JButton getBackButton() {
+        return backButton;
+    }
 }
