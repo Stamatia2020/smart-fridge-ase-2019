@@ -32,7 +32,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
     @SuppressWarnings("unchecked")
     public List<Category> getAll() {
-        return entityManager.createQuery("from category").getResultList();
+        return entityManager.createQuery("from Category").getResultList();
 	}
 
     /**
