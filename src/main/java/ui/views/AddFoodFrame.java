@@ -26,14 +26,16 @@ import javax.swing.ImageIcon;
 public class AddFoodFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JComboBox categoryBox;
 	private JTextField nameField;
 	private JTextField quantityField;
 	private JTextField caloriesField;
-	private JLabel lblCategoty;
+	private JLabel lblCategory;
 	private JLabel lblName;
 	private JLabel lblQuantity;
 	private JLabel lblCalories;
 	private JLabel lblNewLabel;
+	private JButton doneButton;
 	private JButton backButton;
 
 	/**
@@ -60,7 +62,7 @@ public class AddFoodFrame extends JFrame {
 		backButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		backButton.setBackground(new Color(30, 144, 255));
 		
-		JButton doneButton = new JButton("DONE");
+		doneButton = new JButton("DONE");
 		doneButton.setForeground(new Color(255, 255, 255));
 		doneButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		doneButton.setBackground(new Color(30, 144, 255));
@@ -82,15 +84,15 @@ public class AddFoodFrame extends JFrame {
 		caloriesField.setFont(new Font("Perpetua Titling MT", Font.BOLD, 15));
 		caloriesField.setColumns(10);
 		
-		JComboBox categoryBox = new JComboBox();
+		categoryBox = new JComboBox();
 		categoryBox.setEditable(true);
 		categoryBox.setBackground(new Color(255, 255, 255));
 		categoryBox.setFont(new Font("Perpetua Titling MT", Font.BOLD, 15));
-		
-		lblCategoty = new JLabel("Category");
-		lblCategoty.setForeground(new Color(255, 255, 255));
-		lblCategoty.setFont(new Font("Perpetua Titling MT", Font.BOLD, 16));
-		lblCategoty.setLabelFor(categoryBox);
+
+        lblCategory = new JLabel("Category");
+        lblCategory.setForeground(new Color(255, 255, 255));
+        lblCategory.setFont(new Font("Perpetua Titling MT", Font.BOLD, 16));
+        lblCategory.setLabelFor(categoryBox);
 		
 		lblName = new JLabel("NAME");
 		lblName.setLabelFor(nameField);
@@ -128,7 +130,7 @@ public class AddFoodFrame extends JFrame {
 								.addComponent(lblQuantity)
 								.addComponent(lblName)
 								.addComponent(lblCalories)
-								.addComponent(lblCategoty))
+								.addComponent(lblCategory))
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(nameField, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
@@ -155,7 +157,7 @@ public class AddFoodFrame extends JFrame {
 							.addGap(81)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(categoryBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblCategoty))
+								.addComponent(lblCategory))
 							.addGap(16)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -176,6 +178,26 @@ public class AddFoodFrame extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
+    public JComboBox getCategoryBox() {
+        return categoryBox;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JTextField getQuantityField() {
+        return quantityField;
+    }
+
+    public JTextField getCaloriesField() {
+        return caloriesField;
+    }
+
+    public JButton getDoneButton() {
+        return doneButton;
+    }
 
     public JButton getBackButton() {
         return backButton;

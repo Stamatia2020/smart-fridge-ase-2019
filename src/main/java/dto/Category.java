@@ -57,8 +57,13 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	//Known values
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    //Known values
 	public static final Category FRUITS = new Category(1, "Fruit", "Eg. apple, orange, banana");
 	public static final Category VEGETABLES = new Category(2, "Vegetable", "Eg. cucumber, pepper, carrot");
 	public static final Category DAIRY = new Category(3, "Dairy", "Eg. milk, eggs, butter");
