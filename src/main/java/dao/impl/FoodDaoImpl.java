@@ -30,7 +30,7 @@ public class FoodDaoImpl implements FoodDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<Food> getAll() {
-        return entityManager.createQuery("from food").getResultList();
+        return entityManager.createQuery("from Food").getResultList();
     }
 
     /**
