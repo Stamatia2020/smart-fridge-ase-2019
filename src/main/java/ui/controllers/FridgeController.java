@@ -1,42 +1,36 @@
 package main.java.ui.controllers;
 
-import main.java.dao.CategoryDao;
-import main.java.dao.impl.FoodDaoImpl;
-import main.java.dto.Category;
+import main.java.dao.FoodDao;
 import main.java.dto.Food;
-import main.java.ui.views.AddFoodFrame;
 import main.java.ui.views.FridgeFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
-import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.EnumSet;
 
 @Controller
 public class FridgeController extends AbstractFrameController {
 
     private FridgeFrame fridgeFrame;
     private MainController mainController;
-    private AddFoodFrame addFoodFrame;
-    private CategoryDao categoryDao;
-    private FoodDaoImpl foodDao;
+    private FoodFormController foodFormController;
+    private FoodDao foodDao;
 
     @Autowired
-    public FridgeController(
-            FridgeFrame fridgeFrame,
-            AddFoodFrame addFoodFrame,
-            @Lazy MainController mainController,
-            CategoryDao categoryDao,
-            FoodDaoImpl foodDao) {
+    public FridgeController(FridgeFrame fridgeFrame, @Lazy FoodFormController foodFormController, @Lazy MainController mainController, FoodDao foodDao) {
         this.fridgeFrame = fridgeFrame;
         this.mainController = mainController;
-        this.addFoodFrame = addFoodFrame;
-        this.categoryDao = categoryDao;
+        this.foodFormController = foodFormController;
         this.foodDao = foodDao;
     }
 
     @Override
     public void prepareAndShowFrame() {
+        // prepare table model and initialize JTable
+        fridgeFrame.initializeFoodTable(prepareFoodTableModel());
+
         // attach button listeners
         registerAction(fridgeFrame.getAddButton(), (e -> showAddFoodForm()));
         registerAction(fridgeFrame.getBackButton(), (e -> returnToMainFrame()));
@@ -44,29 +38,26 @@ public class FridgeController extends AbstractFrameController {
         fridgeFrame.setVisible(true);
     }
 
-    @SuppressWarnings("unchecked")
-    private void showAddFoodForm() {
-        // initialize dropdown list with food categories
-        addFoodFrame.getCategoryBox().setModel(new DefaultComboBoxModel(categoryDao.getAll().toArray()));
+    private DefaultTableModel prepareFoodTableModel() {
+        String[] columnNames = {"Name", "Quantity (g)", "Calories (kCal)", "Actions"};
 
-        // attach button listeners
-        registerAction(addFoodFrame.getDoneButton(), (e -> storeFood()));
-        registerAction(addFoodFrame.getBackButton(), (e -> returnToFridgeFrame()));
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(columnNames);
 
-        addFoodFrame.setVisible(true);
-        fridgeFrame.dispose();
+        for (Food food : foodDao.getAll()) {
+            Object[] o = new Object[5];
+            o[0] = food.getName();
+            o[1] = food.getQuantity();
+            o[2] = food.getCalories();
+            o[3] = EnumSet.allOf(FridgeFrame.Actions.class);
+            model.addRow(o);
+        }
+        return model;
     }
 
-    private void storeFood() {
-        Food food = new Food();
-        food.setCategory((Category) addFoodFrame.getCategoryBox().getSelectedItem());
-        food.setName(addFoodFrame.getNameField().getText());
-        food.setCalories(Double.parseDouble(addFoodFrame.getCaloriesField().getText()));
-        food.setQuantity(Integer.parseInt(addFoodFrame.getQuantityField().getText()));
-        foodDao.add(food);
-
-        fridgeFrame.setVisible(true);
-        addFoodFrame.dispose();
+    private void showAddFoodForm() {
+        foodFormController.prepareAndShowFrame();
+        fridgeFrame.dispose();
     }
 
     private void returnToMainFrame() {
@@ -74,8 +65,4 @@ public class FridgeController extends AbstractFrameController {
         fridgeFrame.dispose();
     }
 
-    private void returnToFridgeFrame() {
-        fridgeFrame.setVisible(true);
-        addFoodFrame.dispose();
-    }
 }
