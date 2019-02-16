@@ -13,22 +13,23 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 
 import main.java.dto.Food;
+import main.java.ui.controllers.FoodFormController;
+import main.java.ui.controllers.FridgeController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.*;
 import java.util.EnumSet;
 import java.util.List;
 
 @Component
 public class FridgeFrame extends JFrame {
 
+    private FridgeController fridgeController;
     private JPanel contentPane;
     private JTable table;
-    private static ArrayList<Food> foods = new ArrayList<>();
     private JButton backButton;
     private JButton addButton;
 
@@ -46,7 +47,10 @@ public class FridgeFrame extends JFrame {
     /**
      * Create the frame.
      */
-    public FridgeFrame() {
+    @Autowired
+    public FridgeFrame(FridgeController fridgeController) {
+
+        this.fridgeController = fridgeController;
 
         try {
             setIconImage(Toolkit.getDefaultToolkit().getImage(new ClassPathResource("/images/fridge.png").getURL()));
@@ -66,11 +70,13 @@ public class FridgeFrame extends JFrame {
         backButton.setForeground(new Color(255, 255, 255));
         backButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
         backButton.setBackground(new Color(30, 144, 255));
+        backButton.setFocusable(false);
 
         addButton = new JButton("Add");
         addButton.setForeground(new Color(255, 255, 255));
         addButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
         addButton.setBackground(new Color(30, 144, 255));
+        addButton.setFocusable(false);
 
         JLabel lblFoodsList = new JLabel("Foods List");
         lblFoodsList.setForeground(new Color(255, 255, 255));
@@ -130,10 +136,6 @@ public class FridgeFrame extends JFrame {
         return backButton;
     }
 
-    public JTable getTable() {
-        return table;
-    }
-
     class ButtonsPanel extends JPanel {
         public final List<JButton> buttons = new ArrayList<>();
 
@@ -189,8 +191,8 @@ public class FridgeFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             int row = table.convertRowIndexToModel(table.getEditingRow());
-            Object o = table.getModel().getValueAt(row, 0);
-            JOptionPane.showMessageDialog(table, "Editing: " + o);
+            Food food = (Food) table.getModel().getValueAt(row, FridgeController.MODEL_COLUMN_ID);
+            fridgeController.editFoodAction(food);
         }
     }
 
@@ -205,8 +207,8 @@ public class FridgeFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             int row = table.convertRowIndexToModel(table.getEditingRow());
-            Object o = table.getModel().getValueAt(row, 0);
-            JOptionPane.showMessageDialog(table, "Deleting: " + o);
+            Food food = (Food) table.getModel().getValueAt(row, FridgeController.MODEL_COLUMN_ID);
+            fridgeController.deleteFoodAction(food);
         }
     }
 
@@ -275,13 +277,17 @@ public class FridgeFrame extends JFrame {
 
         table.setModel(model);
 
+        // hide column 4 (food entity)
+        TableColumnModel tcm = table.getColumnModel();
+        tcm.removeColumn(tcm.getColumn(FridgeController.MODEL_COLUMN_ID));
+
         // these column configs should be applied after the model is set
-        table.getColumnModel().getColumn(0).setPreferredWidth(36);
-        table.getColumnModel().getColumn(1).setPreferredWidth(10);
-        table.getColumnModel().getColumn(2).setPreferredWidth(10);
-        table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table.getColumnModel().getColumn(3).setCellRenderer(new ButtonsRenderer());
-        table.getColumnModel().getColumn(3).setCellEditor(new ButtonsEditor(table));
+        tcm.getColumn(FridgeController.NAME_COLUMN_ID).setPreferredWidth(36);
+        tcm.getColumn(FridgeController.QUANTITY_COLUMN_ID).setPreferredWidth(10);
+        tcm.getColumn(FridgeController.CALORIES_COLUMN_ID).setPreferredWidth(10);
+        tcm.getColumn(FridgeController.ACTIONS_COLUMN_ID).setPreferredWidth(100);
+        tcm.getColumn(FridgeController.ACTIONS_COLUMN_ID).setCellRenderer(new ButtonsRenderer());
+        tcm.getColumn(FridgeController.ACTIONS_COLUMN_ID).setCellEditor(new ButtonsEditor(table));
 
     }
 }

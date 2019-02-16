@@ -48,19 +48,22 @@ public class MainFrame extends JFrame {
 		profileButton.setForeground(Color.WHITE);
 		profileButton.setBackground(new Color(30, 144, 255));
 		profileButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
+        profileButton.setFocusable(false);
 
 		exitButton = new JButton("Exit");
 
 		exitButton.setForeground(Color.WHITE);
 		exitButton.setBackground(new Color(30, 144, 255));
 		exitButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
+        exitButton.setFocusable(false);
 
-		fridgeButton = new JButton("MY FRIDGE");
+		fridgeButton = new JButton("My Fridge");
 		fridgeButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		fridgeButton.setForeground(new Color(255, 255, 255));
 		fridgeButton.setBackground(new Color(30, 144, 255));
+        fridgeButton.setFocusable(false);
 
-		lblNewLabel = new JLabel("");
+        lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(255, 255, 255));
         try {
             lblNewLabel.setIcon(new ImageIcon(new ClassPathResource("/images/refrigerator.png").getURL()));

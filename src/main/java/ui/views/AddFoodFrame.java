@@ -61,13 +61,15 @@ public class AddFoodFrame extends JFrame {
 		backButton.setForeground(new Color(255, 255, 255));
 		backButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		backButton.setBackground(new Color(30, 144, 255));
-		
-		doneButton = new JButton("DONE");
+        backButton.setFocusable(false);
+
+        doneButton = new JButton("DONE");
 		doneButton.setForeground(new Color(255, 255, 255));
 		doneButton.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 18));
 		doneButton.setBackground(new Color(30, 144, 255));
-		
-		JLabel lblAddFood = new JLabel("ADD FOOD");
+        doneButton.setFocusable(false);
+
+        JLabel lblAddFood = new JLabel("ADD FOOD");
 		lblAddFood.setForeground(new Color(255, 255, 255));
 		lblAddFood.setFont(new Font("Perpetua Titling MT", Font.BOLD, 31));
 		

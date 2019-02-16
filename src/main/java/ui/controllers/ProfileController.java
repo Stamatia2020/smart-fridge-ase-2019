@@ -1,6 +1,6 @@
 package main.java.ui.controllers;
 
-import main.java.dao.impl.UserDaoImpl;
+import main.java.controller.UserController;
 import main.java.dto.User;
 import main.java.ui.views.ProfileFrame;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +11,15 @@ public class ProfileController extends AbstractFrameController {
 
     private ProfileFrame profileFrame;
     private MainController mainController;
-    private UserDaoImpl userDao;
+    private UserController userController;
     private User user;
 
     @Autowired
-    public ProfileController(ProfileFrame profileFrame, MainController mainController, UserDaoImpl userDao) {
+    public ProfileController(ProfileFrame profileFrame, MainController mainController, UserController userController) {
         this.profileFrame = profileFrame;
         this.mainController = mainController;
-        this.userDao = userDao;
-        user = userDao.getFirst();
+        this.userController = userController;
+        user = this.userController.get(1);
     }
 
     @Override
@@ -57,12 +57,11 @@ public class ProfileController extends AbstractFrameController {
 
         // insert/update
         if (!userExists()) {
-            userDao.add(user);
+            userController.add(user);
         } else {
-            userDao.update(user);
+            userController.update(user);
         }
 
-        // TODO: fix this from appearing multiple times
         profileFrame.infoBox("Profile updated successfully!");
     }
 

@@ -76,11 +76,13 @@ public class ProfileFrame extends JFrame {
 		btnDone.setBackground(new Color(30, 144, 255));
 		btnDone.setForeground(new Color(255, 255, 255));
 		btnDone.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 17));
+		btnDone.setFocusable(false);
 
 		btnBack = new JButton("BACK");
 		btnBack.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 17));
 		btnBack.setBackground(new Color(30, 144, 255));
 		btnBack.setForeground(Color.WHITE);
+        btnBack.setFocusable(false);
 
         JLabel lblNewLabel = new JLabel("");
 
@@ -117,9 +119,9 @@ public class ProfileFrame extends JFrame {
 								.addComponent(heightField, 0, 0, Short.MAX_VALUE)
 								.addComponent(weightField, 0, 0, Short.MAX_VALUE)))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnDone, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(btnDone, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)))
 					.addGap(70))
 		);
 		gl_panel.setVerticalGroup(
