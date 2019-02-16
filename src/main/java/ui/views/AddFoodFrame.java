@@ -7,20 +7,13 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Toolkit;
 import java.io.IOException;
-import javax.swing.ImageIcon;
 
 @Component
 public class AddFoodFrame extends JFrame {
@@ -180,6 +173,10 @@ public class AddFoodFrame extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
+    public void infoBox(String infoTitle, String infoMessage) {
+        JOptionPane.showMessageDialog(null, infoMessage, infoTitle, JOptionPane.INFORMATION_MESSAGE);
+    }
 
     public JComboBox getCategoryBox() {
         return categoryBox;

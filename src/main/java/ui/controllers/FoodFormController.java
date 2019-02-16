@@ -67,12 +67,14 @@ public class FoodFormController extends AbstractFrameController {
             food.setCalories(Double.parseDouble(addFoodFrame.getCaloriesField().getText()));
             food.setQuantity(Integer.parseInt(addFoodFrame.getQuantityField().getText()));
             foodController.add(food);
+            addFoodFrame.infoBox("Food saved", addFoodFrame.getNameField().getText() + " has been saved successfully!");
         } else {
             this.food.setCategory((Category) addFoodFrame.getCategoryBox().getSelectedItem());
             this.food.setName(addFoodFrame.getNameField().getText());
             this.food.setCalories(Double.parseDouble(addFoodFrame.getCaloriesField().getText()));
             this.food.setQuantity(Integer.parseInt(addFoodFrame.getQuantityField().getText()));
             foodController.update(this.food);
+            addFoodFrame.infoBox("Food updated", addFoodFrame.getNameField().getText() + " has been updated successfully!");
         }
 
         returnToFridgeFrame();

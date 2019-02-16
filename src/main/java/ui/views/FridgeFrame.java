@@ -128,14 +128,6 @@ public class FridgeFrame extends JFrame {
         contentPane.setLayout(gl_contentPane);
     }
 
-    public JButton getAddButton() {
-        return addButton;
-    }
-
-    public JButton getBackButton() {
-        return backButton;
-    }
-
     class ButtonsPanel extends JPanel {
         public final List<JButton> buttons = new ArrayList<>();
 
@@ -273,6 +265,14 @@ public class FridgeFrame extends JFrame {
         }
     }
 
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
+
     public void initializeFoodTable(DefaultTableModel model) {
 
         table.setModel(model);
@@ -289,5 +289,9 @@ public class FridgeFrame extends JFrame {
         tcm.getColumn(FridgeController.ACTIONS_COLUMN_ID).setCellRenderer(new ButtonsRenderer());
         tcm.getColumn(FridgeController.ACTIONS_COLUMN_ID).setCellEditor(new ButtonsEditor(table));
 
+    }
+
+    public int confirmationBox(String message) {
+        return JOptionPane.showConfirmDialog(null, message, "Confirm deletion", JOptionPane.YES_NO_OPTION);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.EnumSet;
 
@@ -87,8 +88,11 @@ public class FridgeController extends AbstractFrameController {
     }
 
     public void deleteFoodAction(Food food) {
-        foodController.delete(food);
-        fridgeFrame.initializeFoodTable(prepareFoodTableModel());
+        int answer = fridgeFrame.confirmationBox("Are you sure you want to delete " + food.getName() + "?");
+        if(answer == JOptionPane.YES_OPTION){
+            foodController.delete(food);
+            fridgeFrame.initializeFoodTable(prepareFoodTableModel());
+        }
     }
 
     private void showAddFoodForm() {
