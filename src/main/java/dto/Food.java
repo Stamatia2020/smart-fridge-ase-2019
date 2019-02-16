@@ -1,7 +1,7 @@
 package main.java.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,13 +24,13 @@ public class Food {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	@ManyToMany(mappedBy = "foods")
-	private Set<User> users;
+	private List<User> users;
 
 	/**
 	 * Default Constructor
 	 */
 	public Food() {
-		users = new HashSet<>();
+		users = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -73,11 +73,11 @@ public class Food {
 		this.category = category;
 	}
 
-	public Set<User> getUsers() {
+	public List<User> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<User> users) {
+	public void setUsers(List<User> users) {
 		this.users = users;
 	}
 }

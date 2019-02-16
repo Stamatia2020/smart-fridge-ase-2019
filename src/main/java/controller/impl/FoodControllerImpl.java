@@ -1,6 +1,6 @@
 package main.java.controller.impl;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 
@@ -17,7 +17,7 @@ public class FoodControllerImpl implements FoodController {
 	}
 
 	@Override
-	public Set<Food> listFoods(int userId) {
+	public List<Food> listFoods() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -28,13 +28,4 @@ public interface UserController {
 	 *            the user
 	 */
 	public void update(User user);
-
-	/**
-	 * Delete a user.
-	 * 
-	 * @param user
-	 *            the user
-	 */
-	public void delete(User user);
-
 }

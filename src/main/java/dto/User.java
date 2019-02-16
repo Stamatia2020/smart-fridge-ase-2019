@@ -1,7 +1,7 @@
 package main.java.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -29,13 +29,13 @@ public class User {
         joinColumns = { @JoinColumn(name = "user_id") }, 
         inverseJoinColumns = { @JoinColumn(name = "food_id") }
     )
-	private Set<Food> foods;
+	private List<Food> foods;
 
 	/**
 	 * Default Constructor
 	 */
 	public User() {
-		foods = new HashSet<>();
+		foods = new ArrayList<>();
 	}
 	
 	public int getId() {
@@ -78,11 +78,11 @@ public class User {
 		this.age = age;
 	}
 
-	public Set<Food> getFoods() {
+	public List<Food> getFoods() {
 		return foods;
 	}
 
-	public void setFoods(Set<Food> foods) {
+	public void setFoods(List<Food> foods) {
 		this.foods = foods;
 	}
 	

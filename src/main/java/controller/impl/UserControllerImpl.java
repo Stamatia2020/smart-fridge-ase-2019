@@ -11,7 +11,7 @@ public class UserControllerImpl implements UserController {
 	@Override
 	public void add(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -23,13 +23,6 @@ public class UserControllerImpl implements UserController {
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void delete(User user) {
-		// TODO Auto-generated method stub
-		
 	}
-
 }
