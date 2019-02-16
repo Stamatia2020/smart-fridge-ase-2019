@@ -19,19 +19,4 @@ public interface CategoryController {
      * @return A set of categories.
      */
     public List<Category> listCategories();
-
-    /**
-     * Update a category.
-     *
-     * @param category the category
-     */
-    public void update(Category category);
-
-    /**
-     * Delete a category.
-     *
-     * @param category the category
-     */
-    public void delete(Category category);
-
 }
