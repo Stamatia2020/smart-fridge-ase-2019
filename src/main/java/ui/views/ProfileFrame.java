@@ -1,15 +1,25 @@
 package main.java.ui.views;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Component;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ProfileFrame extends JFrame {
