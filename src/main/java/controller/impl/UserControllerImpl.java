@@ -1,28 +1,30 @@
 package main.java.controller.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import main.java.controller.UserController;
+import main.java.dao.UserDao;
 import main.java.dto.User;
 
 @Controller
 public class UserControllerImpl implements UserController {
 
+	@Autowired
+	private UserDao userDao;
+	
 	@Override
 	public void add(User user) {
-		// TODO Auto-generated method stub
-
+		userDao.add(user);
 	}
 
 	@Override
 	public User get(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.getById(userId);
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-
+		userDao.update(user);
 	}
 }
