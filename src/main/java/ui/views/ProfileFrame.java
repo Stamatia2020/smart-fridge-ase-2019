@@ -53,7 +53,7 @@ public class ProfileFrame extends JFrame {
 		heightField.setColumns(10);
 
 		weightField = new JTextField();
-		weightField.setFont(new Font("Perpetua Titling MT", Font.PLAIN, 16));
+		weightField.setFont(new Font("Perpetua Titling MT", Font.BOLD, 16));
 		weightField.setColumns(10);
 
 		JLabel lblMakeYourProfile = new JLabel("Make your Profile");
