@@ -1,6 +1,6 @@
 package main.java.controller;
 
-import java.util.Set;
+import java.util.List;
 
 import main.java.dto.Food;
 
@@ -16,12 +16,10 @@ public interface FoodController {
 
 	/**
 	 * List foods by user.
-	 * 
-	 * @param userId
-	 *            the user identifier
+     *
 	 * @return A set of foods.
 	 */
-	public Set<Food> listFoods(int userId);
+	public List<Food> listFoods();
 
 	/**
 	 * Update a food.
