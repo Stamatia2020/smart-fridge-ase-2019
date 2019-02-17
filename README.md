@@ -1,5 +1,5 @@
 # Smart Fridge
-A simple Spring Boot Swing JAVA application following the guidelines of the Advanced Software Technology course 2019. Utilizes a file-embedded H2 database for persistence with JPA + Hibernate ORM.
+A simple Spring Boot Swing JAVA application following the guidelines of the Advanced Software Engineering course 2019. Utilizes a file-embedded H2 database for persistence with JPA + Hibernate ORM.
 
 ### Development Setup Instructions
 
